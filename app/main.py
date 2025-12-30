@@ -42,6 +42,24 @@ def add_item(nume, cantitate, pret, categorie):
         f"(cantitate: {cantitate}, pret: {pret}, total: {total}, categorie: {categorie})"
     )
 
+def remove_item(nume):
+    items = load_items()
+    items_noi = []
+
+    gasit = False
+
+    for item in items:
+        if item["nume"] == nume:
+            gasit = True
+        else:
+            items_noi.append(item)
+    if not gasit:
+        print(f"Articolul '{nume}' nu a fost gasit.")
+        return
+
+    save_items(items_noi)
+    print(f"Articolul '{nume}' a fost sters cu succes.")
+
 def list_items(sort_key = None):
     items = load_items()
 
@@ -82,6 +100,15 @@ def main():
         categorie = sys.argv[5]
 
         add_item(nume, cantitate, pret, categorie)
+
+    elif command == "remove":
+        if len(sys.argv) != 3:
+            print("Folosire: remove <nume>")
+            return
+
+        nume = sys.argv[2]
+        remove_item(nume)
+
     elif command == "list":
         sort_key = None
         if len(sys.argv) == 4  and sys.argv[2] == "--sort":
