@@ -60,6 +60,16 @@ def remove_item(nume):
     save_items(items_noi)
     print(f"Articolul '{nume}' a fost sters cu succes.")
 
+def total_cost():
+    items = load_items()
+
+    total = 0
+    for item in items:
+        total += item["cantitate"] * item["pret"]
+
+    print(f"Cost total: {total} RON")
+    print(f"Articole: {len(items)}")
+
 def list_items(sort_key = None):
     items = load_items()
 
@@ -115,6 +125,9 @@ def main():
             sort_key = sys.argv[3]
 
         list_items(sort_key)
+
+    elif command == "total":
+        total_cost()
 
     else:
         print(f"Comanda introdusa nu exista: {command}")
