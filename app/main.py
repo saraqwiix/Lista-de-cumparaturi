@@ -70,6 +70,24 @@ def total_cost():
     print(f"Cost total: {total} RON")
     print(f"Articole: {len(items)}")
 
+def search_by_category(categorie):
+    items = load_items()
+    gasite = False
+
+    print(f"Articole din categoria: '{categorie}':")
+
+    for item in items:
+        if item["categorie"] == categorie:
+            total = item["cantitate"] * item["pret"]
+            print(
+                f"- {item['nume']} | cantitate: {item['cantitate']} "
+                f"| pret: {item['pret']} | total: {total}"
+            )
+            gasite = True
+
+    if not gasite:
+        print("Nu exista articole in aceasta categorie")
+
 def list_items(sort_key = None):
     items = load_items()
 
@@ -128,6 +146,14 @@ def main():
 
     elif command == "total":
         total_cost()
+
+    elif command == "search":
+        if len(sys.argv) != 4 or sys.argv[2] != "--category":
+            print("Folosire: search --category <categorie>")
+            return
+
+        categorie = sys.argv[3]
+        search_by_category(categorie)
 
     else:
         print(f"Comanda introdusa nu exista: {command}")
