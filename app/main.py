@@ -1,6 +1,6 @@
-
 import json
 import sys
+import csv
 
 FILE_PATH = "lista_de_cumparaturi.json"
 
@@ -88,6 +88,29 @@ def search_by_category(categorie):
     if not gasite:
         print("Nu exista articole in aceasta categorie")
 
+def export_csv(filename):
+    items = load_items()
+
+    if not items:
+        print("Lista de cumparaturi este goala")
+        return
+
+    with open(filename, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["nume", "cantitate", "pret", "categorie", "total"])
+
+        for item in items:
+            total = item["cantitate"] * item["pret"]
+            writer.writerow([
+                item["nume"],
+                item["cantitate"],
+                item["pret"],
+                item["categorie"],
+                total
+            ])
+
+    print(f"Lista a fost exportata cu succes in {filename}")
+
 def list_items(sort_key = None):
     items = load_items()
 
@@ -154,6 +177,14 @@ def main():
 
         categorie = sys.argv[3]
         search_by_category(categorie)
+
+    elif command == "export":
+        if len(sys.argv) != 3:
+            print("Folosire: export <fisier.csv>")
+            return
+
+        filename = sys.argv[2]
+        export_csv(filename)
 
     else:
         print(f"Comanda introdusa nu exista: {command}")
