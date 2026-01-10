@@ -1,3 +1,4 @@
+
 FROM python:3.10-slim
 
 WORKDIR /app
@@ -5,4 +6,4 @@ WORKDIR /app
 COPY app/ app/
 COPY lista_de_cumparaturi.json .
 
-CMD ["python3", "app/main.py"]
+ENTRYPOINT ["python3", "app/main.py"]
