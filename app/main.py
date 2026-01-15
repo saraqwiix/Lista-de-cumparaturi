@@ -88,6 +88,20 @@ def search_by_category(categorie):
     if not gasite:
         print("Nu exista articole in aceasta categorie")
 
+def subtotal_pe_categorie():
+    items = load_items()
+    if not items:
+        print("Lista de cumparaturi este goala.")
+        return
+
+    subtotal = {}
+    for item in items:
+        subtotal[item["categorie"]] = subtotal.get(item["categorie"], 0) + item["cantitate"] * item["pret"]
+
+    print("Subtotaluri pe categorii:")
+    for categorie, total in subtotal.items():
+        print(f"- {categorie}: {total} RON")
+
 def export_csv(filename):
     items = load_items()
 
@@ -169,6 +183,9 @@ def main():
 
     elif command == "total":
         total_cost()
+
+    elif command == "subtotal":
+        subtotal_pe_categorie()
 
     elif command == "search":
         if len(sys.argv) != 4 or sys.argv[2] != "--category":
