@@ -147,6 +147,34 @@ def list_items(sort_key = None):
             f"categorie: {item['categorie']}"
         )
 
+def help():
+    print("Aplicatie - Lista de cumparaturi")
+    print()
+    print("Comenzile disponibile sunt:")
+    print(" add <nume> <cantitate> <pret> <categorie>")
+    print("     Adauga un articol nou in  lista")
+    print()
+    print(" remove <nume>")
+    print("     Sterge un articol dupa nume")
+    print()
+    print(" list [--sort <nume|pret|categorie>]")
+    print("     Afiseaza lista de cumparaturi (optional sortata)")
+    print()
+    print(" search --category <categorie>")
+    print("     Afiseaza articolele dintr-o categorie")
+    print()
+    print(" total")
+    print("     Afiseaza costul total al listei")
+    print()
+    print(" subtotal")
+    print("     Afiseaza subtotalul pe fiecare categorie")
+    print()
+    print(" export <fisier.csv>")
+    print("     Exporta lista in format CSV")
+    print()
+    print(" help")
+    print("     Afiseaza meniul de ajutor")
+
 def main():
     if len(sys.argv) < 2:
         print("Folosire: python3 app/main.py add <nume> <cantitate> <pret> <categorie>")
@@ -202,6 +230,9 @@ def main():
 
         filename = sys.argv[2]
         export_csv(filename)
+
+    elif command == "help":
+        help()
 
     else:
         print(f"Comanda introdusa nu exista: {command}")
