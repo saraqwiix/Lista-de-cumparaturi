@@ -51,36 +51,66 @@ Proiectul poate fi rulat direct din Docker, fără a fi nevoie să compilați co
 
 # Exemple de comenzi
 
+```bash
 docker run saraqwiix/lista-de-cumparaturi add "exemplu"
 docker run saraqwiix/lista-de-cumparaturi list
+```
 
 Exemple de utilizare
+
 Exemplul 1: Adăugare articol
+```bash
 $ docker run saraqwiix/lista-de-cumparaturi add "mere" 5 2.5 "fructe"
+```
+
 Output așteptat:
+```bash
 Articol adăugat cu succes: mere (cantitate: 5, pret: 2.5, total: 12.5, categorie: fructe)
+```
 
 Exemplul 2: Listare articole
+```bash
 $ docker run saraqwiix/lista-de-cumparaturi list
+```
+
 Output așteptat:
+```bash
 Lista de cumpărături:
 - mere | cantitate: 5 | pret: 2.5 | total: 12.5 | categorie: fructe
+```
 
 Exemplul 3: Ștergere articol
+
+```bash
 $ docker run saraqwiix/lista-de-cumparaturi remove "mere"
+```
+
 Output așteptat:
+
+```bash
 Articolul 'mere' a fost sters cu succes
+```
 
 Exemplul 4: Cost total
+```bash
 $ docker run saraqwiix/lista-de-cumparaturi total
+```
+
 Output așteptat:
+```bash
 Cost total: 12.5 RON
 Articole: 1
+```
 
 Exemplul 5: Export CSV
+```bash
 $ docker run saraqwiix/lista-de-cumparaturi export lista.csv
+```
+
 Output așteptat:
+```bash
 Lista a fost exportata cu succes in lista.csv
+```
 
 Funcționalități implementate
 [x] Adăugare articole cu nume, cantitate, preț și categorie
@@ -124,12 +154,14 @@ Aplicația nu folosește teste automate. Testarea a fost realizată manual prin 
 
 Comenzi de test utilizate:
 
+```bash
 $ docker run saraqwiix/lista-de-cumparaturi help
 $ docker run saraqwiix/lista-de-cumparaturi add "mere" 5 2.5 "fructe"
 $ docker run saraqwiix/lista-de-cumparaturi list
 $ docker run saraqwiix/lista-de-cumparaturi search --category "fructe"
 $ docker run saraqwiix/lista-de-cumparaturi total
 $ docker run saraqwiix/lista-de-cumparaturi export lista.csv
+```
 
 Docker
 #Build imagine
