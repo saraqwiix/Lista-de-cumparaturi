@@ -153,6 +153,7 @@ Aplicația este controlată prin comenzi din linia de comandă (add, remove, lis
 Probleme întâlnite și soluții
 
 Problemă: Introducerea unor valori invalide pentru cantitate sau preț
+
 Soluție: Am implementat validări care împiedică salvarea articolelor cu cantitate zero sau preț negativ
 
 Problemă: În timpul dezvoltării aplicației, au apărut erori de tip IndentationError, cauzate de folosirea amestecată a tab-urilor și spațiilor în cod.
